@@ -19,19 +19,26 @@ async function fetchPosts() {
 }
 
 export default async function UsersPage() {
-  const posts = await fetchPosts();
+  //Asign types to the Users Object properties
+  const UsersPosts: Promise<User[]> = fetchPosts();
+
+  const posts = await UsersPosts;
+
   console.log(posts);
 
   return (
-    <div>
-      <h1>Latest Blog Posts</h1>
-      <ul>
+    <section>
+      <h2>
+        <Link href={"/"}>Back to Home page</Link>
+      </h2>
+      <h1 className="text-2xl text-blue-800">Latest Blog Posts</h1>
+      <div>
         {posts.map((post) => (
-          <li key={post.id}>{post.phone}</li>
+          <p key={post?.id}>
+            <Link href={`/users/${post?.id}`}>{post?.name}</Link>
+          </p>
         ))}
-      </ul>
-    </div>
+      </div>
+    </section>
   );
-
-  return content;
 }
