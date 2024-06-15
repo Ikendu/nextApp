@@ -8,6 +8,9 @@ type Params = {
     userId: string;
   };
 };
+export const genMetaData = () => {
+  const Username: Promise<User> = getUser({ params: { userId } });
+};
 
 export default async function UserPage({ params: { userId } }: Params) {
   const userData: Promise<User> = getUser(userId);
