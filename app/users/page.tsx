@@ -1,6 +1,7 @@
 import getAllUsers from "@/lib/getAllUsers";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import useSWR from "swr";
 
 export const metadata: Metadata = {
@@ -13,6 +14,8 @@ export default async function UsersPage() {
   const UsersPosts: Promise<User[]> = getAllUsers();
 
   const users = await UsersPosts;
+
+  if(!users) return notFound()
 
   console.log(users);
 
