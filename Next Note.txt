@@ -1,0 +1,3 @@
+ISR: Increamental static regeneration
+SSR: static site regeneration
+SSG: static site generation

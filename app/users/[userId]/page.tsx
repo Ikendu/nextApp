@@ -3,6 +3,9 @@ import getUserPost from "@/lib/getUserPost";
 import { Suspense } from "react";
 import UserPostpage from "./components/UserPostpage";
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+
+// export const revalidate = 60; // revalidate this page every 60s
 
 type Params = {
   params: {
@@ -21,7 +24,7 @@ export default async function UserPage({ params: { userId } }: Params) {
   const userData: Promise<User> = getUser(userId);
   const userPost: Promise<Post[]> = getUserPost(userId);
 
-  //   const [user, posts] = await Promise.all([userData, userPost]);
+  //   const [user, posts] = await Promise.all([userData, userPost]); //for parallel fetching
   const user = await userData;
   return (
     <div>
