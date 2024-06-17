@@ -33,7 +33,7 @@ type User = {
 
 // seart term types for the wikipedia search
 type Result = {
-  padgid: string;
+  pageid: string;
   title: string;
   extract: string;
   thumbnails?: {
