@@ -1,6 +1,8 @@
 //tsrfc
 
-import getWikiResults from "@/app/lib/getWikiResults";
+import getWikiResults from "@/lib/getWikiResults";
+
+// import getWikiResults from "@/lib/getWikiResults";
 
 type Props = {
   params: {
