@@ -7,14 +7,14 @@ export default function Search() {
   const [search, setSearch] = useState("");
   const router = useRouter();
 
-  const handleSearchTerms = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSearch("");
     router.push(`/${search}/`);
   };
   return (
     <form
-      onSubmit={handleSearchTerms}
+      onSubmit={handleSubmit}
       className="w-50 flex justify-center md:justify-between"
     >
       <input
