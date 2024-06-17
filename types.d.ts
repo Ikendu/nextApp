@@ -30,3 +30,18 @@ type User = {
     bs: string;
   };
 };
+
+// seart term types for the wikipedia search
+type Result = {
+  padgid: string;
+  title: string;
+  extract: string;
+  thumbnails?: { source: string; width: number; height: number };
+};
+
+//searchTerm for the search reslt
+type SearchResult = {
+  query?: {
+    pages?: Result[];
+  };
+};

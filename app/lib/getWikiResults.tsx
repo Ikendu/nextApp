@@ -1,4 +1,4 @@
-import { URLSearchParams } from "next/dist/compiled/@edge-runtime/primitives/url";
+// import { URLSearchParams } from "next/dist/compiled/@edge-runtime/primitives/url";
 
 export default async function getWikiResults(searchTerms: string) {
   const searchParams = new URLSearchParams({
@@ -14,8 +14,10 @@ export default async function getWikiResults(searchTerms: string) {
     format: "json",
     origin: "*",
   });
+  //pass the search terms to wikipadia site
   const resp = await fetch(
     "https://en.wikipedia.org/w/api.php?" + searchParams
   );
+  //return the json result
   return resp.json();
 }
