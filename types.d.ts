@@ -36,7 +36,11 @@ type Result = {
   padgid: string;
   title: string;
   extract: string;
-  thumbnails?: { source: string; width: number; height: number };
+  thumbnails?: {
+    source: string;
+    width: number;
+    height: number;
+  };
 };
 
 //searchTerm for the search reslt
