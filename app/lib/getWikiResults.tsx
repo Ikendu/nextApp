@@ -1,6 +1,6 @@
 import { URLSearchParams } from "next/dist/compiled/@edge-runtime/primitives/url";
 
-export default function getWikiResults(searchTerms: string) {
+export default async function getWikiResults(searchTerms: string) {
   const searchParams = new URLSearchParams({
     action: "query",
     generator: "search",
@@ -14,5 +14,8 @@ export default function getWikiResults(searchTerms: string) {
     format: "json",
     origin: "*",
   });
-  return <div>getWikiResults</div>;
+  const resp = await fetch(
+    "https://en.wikipedia.org/w/api.php?" + searchParams
+  );
+  return resp.json();
 }
