@@ -1,5 +1,7 @@
 // import { URLSearchParams } from "next/dist/compiled/@edge-runtime/primitives/url";
 
+import { notFound } from "next/navigation";
+
 export default async function getWikiResults(searchTerm: string) {
   const searchParams = new URLSearchParams({
     action: "query",
