@@ -2,6 +2,7 @@
 
 import getWikiResults from "@/lib/getWikiResults";
 import { notFound } from "next/navigation";
+import Items from "./components/Items";
 
 type Props = {
   params: {
@@ -34,7 +35,7 @@ export default async function SearchResults({ params: { searchTerm } }: Props) {
     <main className="bg-slate-200 ma-auto max-w-lg py-1 min-h-screen">
       {results
         ? Object.values(results).map((result) => (
-            <p key={result.pageid}>{JSON.stringify(result)}</p>
+            <Items key={result.pageid} result={result} />
           ))
         : notFound()}
     </main>

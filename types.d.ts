@@ -36,7 +36,7 @@ type Result = {
   pageid: string;
   title: string;
   extract: string;
-  thumbnails?: {
+  thumbnail?: {
     source: string;
     width: number;
     height: number;
