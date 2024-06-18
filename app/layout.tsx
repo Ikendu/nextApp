@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
+import MyProfilePic from "./aboutlife/component/MyProfilePic";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,6 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} dark:bg-slate-800`}>
         <Navbar />
+        <MyProfilePic />
         {children}
       </body>
     </html>
