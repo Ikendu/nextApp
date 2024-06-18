@@ -22,7 +22,7 @@ export default function Search() {
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         placeholder="Search"
-        className="p-2 w-80 text-xl bg-white rounded-xl"
+        className="p-2 w-60 text-xl bg-white rounded-xl"
       />
       <button className="p-2 font-bold text-xl ml-2 rounded-xl bg-slate-300">
         🧬
