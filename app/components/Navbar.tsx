@@ -7,6 +7,9 @@ function Navbar() {
       <h1 className="text-3xl font-bold text-white grid place-content-center mb-2 md:mb-0">
         <Link href={"/"}>WikiLife</Link>
       </h1>
+      <Link href={`/aboutlife`} className="text-[#d6d2d2] text-xl font-bold">
+        YoungLife
+      </Link>
       <Search />
     </nav>
   );

@@ -15,7 +15,7 @@ export default async function UsersPage() {
 
   const users = await UsersPosts;
 
-  if(!users) return notFound()
+  if (!users) return notFound();
 
   console.log(users);
 
