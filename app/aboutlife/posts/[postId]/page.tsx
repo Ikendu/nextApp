@@ -2,6 +2,13 @@ import getSortedPostsData, { getPostData } from "@/lib/post";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+// to use static site generation and improve our website rendering
+// rebuild this project!
+export function generateStaticParams() {
+  const posts = getSortedPostsData();
+  return posts.map((post) => ({ postId: post.id }));
+}
+
 export function generateMetadata({ params }: { params: { postId: string } }) {
   const { postId } = params;
   const posts = getSortedPostsData();
