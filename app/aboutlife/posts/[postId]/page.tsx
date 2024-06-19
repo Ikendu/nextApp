@@ -1,4 +1,5 @@
-import getSortedPostsData from "@/lib/post";
+import getSortedPostsData, { getPostData } from "@/lib/post";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 
 export function generateMetadata({ params }: { params: { postId: string } }) {
@@ -18,5 +19,18 @@ export default async function Post({ params }: { params: { postId: string } }) {
   const posts = getSortedPostsData();
 
   if (!posts.find((post) => post.id === postId)) return notFound();
-  return <div>page for post</div>;
+
+  const { id, title, date, contentHtml } = await getPostData(postId);
+  return (
+    <main className="px-6 prose prose-xl prose-slate mx-auto dark:prose-invert">
+      <h1 className="text-3xl mt-4 mb-0">{title}</h1>
+      <p className="mt-0">{date}</p>
+      <article>
+        <section dangerouslySetInnerHTML={{ __html: contentHtml }} />
+        <p>
+          <Link href={`/`}>⬅ Back to home page</Link>
+        </p>
+      </article>
+    </main>
+  );
 }
