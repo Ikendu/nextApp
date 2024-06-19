@@ -1,7 +1,19 @@
 import getSortedPostsData from "@/lib/post";
 import { notFound } from "next/navigation";
 
-export default function Post({ params }: { params: { postId: string } }) {
+export function generateMetadata({ params }: { params: { postId: string } }) {
+  const { postId } = params;
+  const posts = getSortedPostsData();
+
+  const post = posts.find((post) => post.id === postId);
+
+  if (!post) return { title: `Post not found` };
+  return {
+    title: post.title,
+  };
+}
+
+export default async function Post({ params }: { params: { postId: string } }) {
   const { postId } = params;
   const posts = getSortedPostsData();
 
