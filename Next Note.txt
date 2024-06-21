@@ -1,3 +1,7 @@
 ISR: Increamental static regeneration
 SSR: static site regeneration
 SSG: static site generation
+
+Generating a random token from the command prompt
+1. Node (enter)
+2. require("crypto").randomBytes(20).toString("hex")
