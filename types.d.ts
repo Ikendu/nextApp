@@ -50,8 +50,9 @@ type SearchResult = {
   };
 };
 
-type BlogPost = {
+type Meta = {
   id: string;
   title: string;
   date: string;
+  tag: string[];
 };
