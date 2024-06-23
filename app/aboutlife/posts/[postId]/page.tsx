@@ -2,6 +2,9 @@ import getSortedPostsData, { getPostData } from "@/lib/post";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+//to make our post server-side rendered (will not cache anything)
+export const revalidate = 0;
+
 // to use static site generation and improve our website rendering
 // rebuild this project!
 export function generateStaticParams() {

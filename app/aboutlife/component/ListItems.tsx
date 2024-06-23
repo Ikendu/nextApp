@@ -2,7 +2,7 @@
 import Link from "next/link";
 
 type Props = {
-  post: BlogPost;
+  post: Meta;
 };
 const ListItems = ({ post }: Props) => {
   const { id, title, date } = post;
