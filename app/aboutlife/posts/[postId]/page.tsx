@@ -45,15 +45,18 @@ export default async function Post({ params }: Props) {
     </Link>
   ));
   return (
-    <main className="px-6 prose prose-xl prose-slate mx-auto dark:prose-invert">
-      <h1 className="text-3xl mt-4 mb-0">{title}</h1>
-      <p className="mt-0">{date}</p>
-      <article>
-        <section dangerouslySetInnerHTML={{ __html: contentHtml }} />
-        <p>
-          <Link href={`/`}>⬅ Back to home page</Link>
-        </p>
-      </article>
-    </main>
+    // <section dangerouslySetInnerHTML={{ __html: contentHtml }} />
+    <>
+      <h2 className="text-3xl">{meta.title}</h2>
+      <p className="mt-0">{meta.date}</p>
+      <article>{content}</article>
+      <section>
+        <h3>Related:</h3>
+        <div className="flex flex-row gap-4">{tags}</div>
+      </section>
+      <p className="mb-10">
+        <link href="/">Back to home</link>
+      </p>
+    </>
   );
 }
