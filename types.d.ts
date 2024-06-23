@@ -54,10 +54,10 @@ type Meta = {
   id: string;
   title: string;
   date: string;
-  tag: string[];
+  tags: string[];
 };
 
 type BlogPost = {
   meta: Meta;
-  content: any;
+  content: ReactElement<any, string | JSXElementConstructor<any>>;
 };

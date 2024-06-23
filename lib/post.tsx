@@ -26,6 +26,19 @@ export async function getPostByName(
     date: string;
     tags: string[];
   }>({ source: rawMDX });
+
+  const id = fileName.replace(/\.mdx$/, ``);
+
+  const blogPostObj: BlogPost = {
+    meta: {
+      id,
+      title: frontmatter.title,
+      date: frontmatter.date,
+      tags: frontmatter.tags,
+    },
+    content,
+  };
+  return blogPostObj;
 }
 
 export async function getPostMeta(): Promise<Meta[] | undefined> {
@@ -49,7 +62,7 @@ export async function getPostMeta(): Promise<Meta[] | undefined> {
   const posts: Meta[] = [];
 
   for (const file of filesArray) {
-    const post = await getPostByName();
+    const post = await getPostByName(file);
     if (post) posts.push(post.meta);
   }
   return posts.sort((a, b) => (a.date < b.date ? 1 : -1));
