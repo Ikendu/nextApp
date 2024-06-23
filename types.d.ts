@@ -56,3 +56,8 @@ type Meta = {
   date: string;
   tag: string[];
 };
+
+type BlogPost = {
+  meta: Meta;
+  content: any;
+};
