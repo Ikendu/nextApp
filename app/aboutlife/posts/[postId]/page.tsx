@@ -23,6 +23,8 @@ export async function generateMetadata({ params: { postId } }: Props) {
   // pass params and destructure it
   const post = await getPostByName(`${postId}.mdx`); //deduped
 
+  console.log(`POST`, post);
+
   if (!post) return { title: `Post Not Found` }; // returning empty array is better than undefined so we dont have problems during mapping an undefined
 
   return {
@@ -37,9 +39,10 @@ export default async function Post({ params }: Props) {
   if (!post) notFound();
 
   const { meta, content } = post;
-  console.log(meta, content);
+  console.log(`Meta`, meta, content);
+  console.log(`Content`, content);
 
-  const tags = meta.tags.map((tag, idx) => (
+  const tags = meta?.tags?.map((tag, idx) => (
     <Link key={idx} href={`/tags/${tag}`}>
       {tag}
     </Link>

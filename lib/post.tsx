@@ -8,10 +8,10 @@ export async function getPostByName(
   fileName: string
 ): Promise<BlogPost | undefined> {
   const res = await fetch(
-    `https://raw.githubusercontent.com/Ikendu/blogpost/main${fileName}`,
+    `https://raw.githubusercontent.com/Ikendu/blogpost/main/${fileName}`,
     {
       headers: {
-        Accept: "application/vnd-github+json",
+        Accept: "application/vnd.github+json",
         Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
         "X-Github-Api-Version": "2022-11-28",
       },
@@ -25,7 +25,10 @@ export async function getPostByName(
     title: string;
     date: string;
     tags: string[];
-  }>({ source: rawMDX });
+  }>({
+    source: rawMDX,
+    options: { parseFrontmatter: true },
+  });
 
   const id = fileName.replace(/\.mdx$/, ``);
 
@@ -42,22 +45,23 @@ export async function getPostByName(
 }
 
 export async function getPostMeta(): Promise<Meta[] | undefined> {
+  console.log(`Calling post fetcher`);
   const res = await fetch(
-    `https://api.github.com/repos/Ikendu/blogpost/git/trees/main?recursive=1`,
+    "https://api.github.com/repos/ikendu/blogpost/git/trees/main?recursive=1",
     {
       headers: {
-        Accept: "application/vnd-github+json",
+        Accept: "application/vnd.github+json",
         Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
-        "X-Github-Api-Version": "2022-11-28",
+        "X-GitHub-Api-Version": "2022-11-28",
       },
     }
   );
   if (!res.ok) return undefined;
   const repoFileTree: Filetree = await res.json();
-  console.log(`REPO FILE TREE`, repoFileTree);
 
   const filesArray = repoFileTree.tree.map((obj) => obj.path);
   filesArray.filter((path) => path.endsWith(`.mdx`));
+  console.log(`REPO FILE TREE`, filesArray);
 
   const posts: Meta[] = [];
 
@@ -65,5 +69,6 @@ export async function getPostMeta(): Promise<Meta[] | undefined> {
     const post = await getPostByName(file);
     if (post) posts.push(post.meta);
   }
+  console.log(posts);
   return posts.sort((a, b) => (a.date < b.date ? 1 : -1));
 }
